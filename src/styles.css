@@ -1,0 +1,230 @@
+/* Default button style */
+.button
+{
+	background-color: blueviolet;
+	color: white;
+	border-radius: 12px;
+	padding: 10px 20px;
+	transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Hover effect for default button */
+.button:hover
+{
+	background-color: darkviolet;
+	color: lightgray;
+}
+
+/* Styling for the 'submit' button */
+.button.submit
+{
+	background-color: green;
+}
+
+/* Hover effect for submit button */
+.button.submit:hover
+{
+	background-color: darkgreen;
+	color: lightgray;
+}
+
+/* Styling for the 'delete' button */
+.button.delete
+{
+	background-color: red;
+}
+
+/* Hover effect for delete button */
+.button.delete:hover
+{
+	background-color: darkred;
+	color: lightgray;
+}
+
+/* Styling for the 'menu' button */
+.button.menu
+{
+	background-color: dodgerblue;
+	color: black;
+}
+
+/* Hover effect for menu button */
+.button.menu:hover
+{
+	background-color: darkblue;
+	color: white;
+}
+
+/* Styling for progress bar */
+.progress-bar
+{
+	width: 100%;
+	height: 20px;
+	background-color: #d05151;
+	border-radius: 12px;
+	overflow: hidden;
+	top: 0;
+
+	position: fixed;
+	box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.8);
+	/* Add inner shadow */
+}
+
+.progress-fill
+{
+	height: 100%;
+	border-radius: 12px;
+	background-color: #4caf50;
+	transition: width 0.05s ease-in-out;
+	box-shadow: 0 0 8px rgba(76, 175, 80, 1.0);
+	/* Add glowing effect */
+}
+
+/* styles.css */
+.styled-input
+{
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	width: 100%;
+}
+
+.styled-input:focus
+{
+	outline: none;
+	border-color: dodgerblue;
+}
+
+/* styles.css */
+.styled-checkbox
+{
+	position: relative;
+	display: inline-block;
+	padding-left: 30px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.styled-checkbox input
+{
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.checkmark
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.styled-checkbox input:checked~.checkmark
+{
+	background-color: dodgerblue;
+	border-color: dodgerblue;
+}
+
+.checkmark:after
+{
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.styled-checkbox input:checked~.checkmark:after
+{
+	display: block;
+}
+
+.styled-checkbox .checkmark:after
+{
+	left: 7px;
+	top: 3px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+}
+
+/* styles.css */
+.styled-radio
+{
+	position: relative;
+	display: inline-block;
+	padding-left: 30px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.styled-radio input
+{
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.radio-dot
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+}
+
+.styled-radio input:checked~.radio-dot
+{
+	background-color: dodgerblue;
+}
+
+.radio-dot:after
+{
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.styled-radio input:checked~.radio-dot:after
+{
+	display: block;
+}
+
+.radio-dot .radio-dot:after
+{
+	content: "";
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	background-color: white;
+	border-radius: 50%;
+}
+
+/* styles.css */
+.styled-select
+{
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	width: 100%;
+	appearance: none;
+	background: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") no-repeat right 8px center/15px auto;
+}
+
+.styled-select:focus
+{
+	outline: none;
+	border-color: dodgerblue;
+}
