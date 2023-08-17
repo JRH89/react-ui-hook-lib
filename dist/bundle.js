@@ -101,8 +101,12 @@
 	  const {
 	    label,
 	    checked,
-	    onChange
+	    onChange,
+	    color = '#ccc'
 	  } = props;
+	  const checkboxStyle = {
+	    backgroundColor: color
+	  };
 	  return /*#__PURE__*/React__default["default"].createElement("label", {
 	    className: "styled-checkbox"
 	  }, label, /*#__PURE__*/React__default["default"].createElement("input", {
@@ -110,7 +114,8 @@
 	    checked: checked,
 	    onChange: onChange
 	  }), /*#__PURE__*/React__default["default"].createElement("span", {
-	    className: "checkmark"
+	    className: "checkmark",
+	    style: checkboxStyle
 	  }));
 	}
 
