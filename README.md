@@ -16,7 +16,7 @@ react-dom
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
 <img width="400px" height="350px" src="images/image3.png">
 <li>Styled Input</li>
-<img width="400px" height="250px" src="images/image4.png"
+<img width="400px" height="250px" src="images/image4.png">
 <li>Image Gallery</li>
   <img width="400px" height="300px" src="images/image2.png">
 </ul>
@@ -24,7 +24,7 @@ react-dom
 <h5>Hooks</h5>
 <ul>
 <li>useLocalStorage</li>
-<img width="400px" height="300px" src="images/image5.png"
+<img width="400px" height="300px" src="images/image5.png">
 </ul>
 
 
