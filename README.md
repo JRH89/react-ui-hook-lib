@@ -1,4 +1,4 @@
-ui-hook-react-lib
+#ui-hook-react-lib
 A collection of reusable React components and hooks to simplify UI development.
 
 ##Installation
