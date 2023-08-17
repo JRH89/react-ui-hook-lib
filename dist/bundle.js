@@ -47,22 +47,34 @@
 	  }));
 	}
 
-	function useLocalStorage(key, initialValue) {
-	  // Check if we're on the client side before accessing localStorage
+	function useLocalStorage(key, initialValue, options = {}) {
 	  const isClient = typeof window !== 'undefined';
-
-	  // Get the value from localStorage or use the initial value
+	  const {
+	    expireAfter = null
+	  } = options;
 	  const storedValue = isClient ? localStorage.getItem(key) : null;
 	  const initial = storedValue ? JSON.parse(storedValue) : initialValue;
-
-	  // Create state for the value
 	  const [value, setValue] = React.useState(initial);
-
-	  // Update the value in localStorage whenever it changes
+	  React.useEffect(() => {
+	    if (isClient) {
+	      if (expireAfter !== null) {
+	        const storedTime = localStorage.getItem(`${key}_time`);
+	        const currentTime = new Date().getTime();
+	        if (!storedTime || currentTime - storedTime > expireAfter) {
+	          localStorage.removeItem(key);
+	          localStorage.removeItem(`${key}_time`);
+	          setValue(initialValue);
+	        }
+	      }
+	    }
+	  }, [key, expireAfter, initialValue]);
 	  const updateValue = newValue => {
 	    setValue(newValue);
 	    if (isClient) {
 	      localStorage.setItem(key, JSON.stringify(newValue));
+	      if (expireAfter !== null) {
+	        localStorage.setItem(`${key}_time`, new Date().getTime());
+	      }
 	    }
 	  };
 	  return [value, updateValue];
@@ -73,14 +85,15 @@
 	    type = 'text',
 	    placeholder,
 	    value,
-	    onChange
+	    onChange,
+	    className
 	  } = props;
 	  return /*#__PURE__*/React__default["default"].createElement("input", {
 	    type: type,
 	    placeholder: placeholder,
 	    value: value,
 	    onChange: onChange,
-	    className: "styled-input" // Add your custom CSS class here
+	    className: `styled-input ${className}` // Add your custom CSS class here
 	  });
 	}
 
@@ -120,18 +133,13 @@
 	  }));
 	}
 
-	function StyledSelect(props) {
-	  const {
-	    options,
-	    value,
-	    onChange
-	  } = props;
-	  return /*#__PURE__*/React__default["default"].createElement("select", {
-	    value: value,
-	    onChange: onChange,
-	    className: "styled-select"
-	  }, options.map(option => /*#__PURE__*/React__default["default"].createElement("option", {
-	    key: option.value,
+	// StyledSelect.js
+	function StyledSelect({
+	  options,
+	  ...props
+	}) {
+	  return /*#__PURE__*/React__default["default"].createElement("select", props, options.map((option, index) => /*#__PURE__*/React__default["default"].createElement("option", {
+	    key: index,
 	    value: option.value
 	  }, option.label)));
 	}

@@ -1,13 +1,12 @@
+// StyledSelect.js
+
 import React from 'react'
-import './styles.css' // Import your CSS for styling
 
-function StyledSelect(props) {
-	const { options, value, onChange } = props
-
+function StyledSelect({ options, ...props }) {
 	return (
-		<select value={value} onChange={onChange} className="styled-select">
-			{options.map((option) => (
-				<option key={option.value} value={option.value}>
+		<select {...props}>
+			{options.map((option, index) => (
+				<option key={index} value={option.value}>
 					{option.label}
 				</option>
 			))}

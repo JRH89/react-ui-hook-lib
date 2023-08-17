@@ -1,6 +1,6 @@
 {
   "name": "ui-hook-react-lib",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Library of React components and hooks",
   "main": "dist/bundle.js",
   "scripts": {
