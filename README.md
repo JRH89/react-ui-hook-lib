@@ -17,13 +17,6 @@ react-dom
 <li>Image Gallery</li>
 </ul>
 
-<h5>Hooks</h5>
-<ul>
-<li>
-useLocalStorage
-</li>
-</ul>
-
 <h5>UI</h5>
 <ul>
 <li>Progress Bar
@@ -40,3 +33,7 @@ useLocalStorage
 useLocalStorage
 </li>
 </ul>
+
+
+
+
