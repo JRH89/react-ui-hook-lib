@@ -6,7 +6,7 @@ npm install react-ui-hook-lib
 
 <h3>Peer Dependencies:</h3>
 react, react-dom
-<br>install by running:<br>
+<br><br>install by running:<br>
 npm install react react-dom
 
 <h4>Features:</h4>
