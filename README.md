@@ -10,7 +10,9 @@ react-dom
 
 <h4>Features:</h4>
 <h5>UI</h5>
-<p>Progress Bar</p>
-<p>Buttons (Default, Menu, Search, Submit, Delete)</p>
-<p>useLocalStorage hook</p>
-<p>Image Gallery</p>
+<ul>
+<li>Progress Bar</li>
+<li>Buttons (Default, Menu, Search, Submit, Delete)</li>
+<li>useLocalStorage hook</li>
+<li>Image Gallery</li>
+</ul>
