@@ -8,6 +8,8 @@ npm install react-ui-hook-lib
 react<br/>
 react-dom
 
+npm install react react-dom
+
 <h4>Features:</h4>
 <h5>UI</h5>
 <ul>
