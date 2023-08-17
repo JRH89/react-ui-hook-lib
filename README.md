@@ -6,9 +6,6 @@ npm install ui-hook-react-lib
 ##ProgressBar
 A customizable progress bar component.
 
-import React from 'react';
-import { ProgressBar } from 'ui-hook-react-lib';
-
 function App() {
   return (
     <div>
