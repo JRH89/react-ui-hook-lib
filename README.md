@@ -13,6 +13,12 @@ react-dom
 <ul>
 <li>Progress Bar</li>
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
-<li>useLocalStorage hook</li>
 <li>Image Gallery</li>
+</ul>
+
+<h5>Hooks</h5>
+<ul>
+<li>
+useLocalStorage
+</li>
 </ul>
