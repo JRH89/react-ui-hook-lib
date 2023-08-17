@@ -2,7 +2,7 @@
 A collection of reusable React UI components and hooks.
 
 <h2>Installation:</h2>
-npm i react-ui-hook-lib
+npm install react-ui-hook-lib
 
 <h3>Peer Dependencies:</h3>
 react<br/>
