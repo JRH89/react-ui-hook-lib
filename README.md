@@ -11,9 +11,8 @@ react-dom
 <h4>Features:</h4>
 <h5>UI</h5>
 <ul>
-<li>Progress Bar
+<li>Progress Bar</li>
 <img width="300px" height="150px" src="images/image.png">
-</li>
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
 <li>Styled Input</li>
 <li>Image Gallery</li>
