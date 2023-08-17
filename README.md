@@ -1,8 +1,4 @@
 
-##Installation
-
-npm install ui-hook-react-lib
-
 ##ProgressBar
 A customizable progress bar component.
 
