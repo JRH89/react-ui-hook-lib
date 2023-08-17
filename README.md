@@ -13,6 +13,7 @@ react-dom
 <ul>
 <li>Progress Bar</li>
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
+<li>Styled Input</li>
 <li>Image Gallery</li>
 </ul>
 
