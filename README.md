@@ -26,7 +26,7 @@ npm install react react-dom
 <h5>Hooks</h5>
 <ul>
 <li>useLocalStorage</li>
-<img width="400px" height="500px" src="images/image5.png">
+<img width="400px" height="600px" src="images/image5.png">
 </ul>
 
 
