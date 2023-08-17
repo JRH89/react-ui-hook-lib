@@ -18,9 +18,9 @@ npm install react react-dom
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
 <img width="500px" height="500px" src="images/image3.png">
 <li>Styled Input</li>
-<img width="400px" height="500" src="images/image4.png">
+<img width="400px" height="500px" src="images/image2.png">
 <li>Image Gallery</li>
-  <img width="400px" height="500px" src="images/image2.png">
+  <img width="400px" height="500px" src="images/image4.png">
 </ul>
 
 <h5>Hooks</h5>
