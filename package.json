@@ -1,7 +1,7 @@
 {
   "name": "ui-hook-react-lib",
-  "version": "1.1.9",
-  "description": "Library of React components and hooks",
+  "version": "1.2.0",
+  "description": "Library of React components and hooks: Progress Bar, Buttons, useLocalStorage, Image Gallery",
   "main": "dist/bundle.js",
   "scripts": {
     "build": "rollup -c",
