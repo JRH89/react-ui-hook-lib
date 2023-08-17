@@ -1,7 +1,7 @@
 ui-hook-react-lib
 A collection of reusable React components and hooks to simplify UI development.
 
-Installation
+##Installation
 You can install ui-hook-react-lib using npm:
 npm install ui-hook-react-lib
 
