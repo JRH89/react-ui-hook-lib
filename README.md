@@ -12,9 +12,11 @@ react-dom
 <h5>UI</h5>
 <ul>
 <li>Progress Bar</li>
-<img width="300px" height="150px" src="images/image.png">
+<img width="350px" height="200px" src="images/image.png">
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
+<img width="400px" height="350px" src="images/image3.png">
 <li>Styled Input</li>
+  
 <li>Image Gallery</li>
   <img width="400px" height="300px" src="images/image2.png">
 </ul>
