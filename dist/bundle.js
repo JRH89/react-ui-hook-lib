@@ -97,58 +97,6 @@
 	  });
 	}
 
-	function StyledCheckbox(props) {
-	  const {
-	    label,
-	    checked,
-	    onChange,
-	    color = '#ccc'
-	  } = props;
-	  const checkboxStyle = {
-	    backgroundColor: color
-	  };
-	  return /*#__PURE__*/React__default["default"].createElement("label", {
-	    className: "styled-checkbox"
-	  }, label, /*#__PURE__*/React__default["default"].createElement("input", {
-	    type: "checkbox",
-	    checked: checked,
-	    onChange: onChange
-	  }), /*#__PURE__*/React__default["default"].createElement("span", {
-	    className: "checkmark",
-	    style: checkboxStyle
-	  }));
-	}
-
-	function StyledRadioButton(props) {
-	  const {
-	    label,
-	    value,
-	    checked,
-	    onChange
-	  } = props;
-	  return /*#__PURE__*/React__default["default"].createElement("label", {
-	    className: "styled-radio"
-	  }, label, /*#__PURE__*/React__default["default"].createElement("input", {
-	    type: "radio",
-	    value: value,
-	    checked: checked,
-	    onChange: onChange
-	  }), /*#__PURE__*/React__default["default"].createElement("span", {
-	    className: "radio-dot"
-	  }));
-	}
-
-	// StyledSelect.js
-	function StyledSelect({
-	  options,
-	  ...props
-	}) {
-	  return /*#__PURE__*/React__default["default"].createElement("select", props, options.map((option, index) => /*#__PURE__*/React__default["default"].createElement("option", {
-	    key: index,
-	    value: option.value
-	  }, option.label)));
-	}
-
 	function GalleryItem({
 	  item
 	}) {
@@ -189,10 +137,7 @@
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
 	exports.ProgressBar = ProgressBar;
-	exports.StyledCheckbox = StyledCheckbox;
 	exports.StyledInput = StyledInput;
-	exports.StyledRadioButton = StyledRadioButton;
-	exports.StyledSelect = StyledSelect;
 	exports.useLocalStorage = useLocalStorage;
 
 	Object.defineProperty(exports, '__esModule', { value: true });

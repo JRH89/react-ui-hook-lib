@@ -1,3 +1,9 @@
+:root
+{
+	--checkmark-color: dodgerblue;
+	/* Default checkmark color */
+}
+
 /* Default button style */
 .button
 {
@@ -137,8 +143,8 @@
 
 .styled-checkbox input:checked~.checkmark
 {
-	background-color: dodgerblue;
-	border-color: dodgerblue;
+	background-color: var(--checkmark-color);
+	border-color: var(--checkmark-color);
 }
 
 .checkmark:after
