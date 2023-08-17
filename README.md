@@ -16,7 +16,7 @@ react-dom
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
 <li>Styled Input</li>
 <li>Image Gallery</li>
-  <img src="images/image2.png">
+  <img width="300px" height="300px" src="images/image2.png">
 </ul>
 
 <h5>Hooks</h5>
