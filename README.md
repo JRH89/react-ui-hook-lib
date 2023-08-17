@@ -1,6 +1,6 @@
 
 ##Installation
-You can install ui-hook-react-lib using npm:
+
 npm install ui-hook-react-lib
 
 ##ProgressBar
