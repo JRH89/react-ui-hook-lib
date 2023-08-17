@@ -6,8 +6,11 @@ import StyledInput from './StyledInput'
 import StyledCheckbox from './StyledCheckbox'
 import StyledRadioButton from './StyledRadioButton'
 import StyledSelect from './StyledSelect'
+import Gallery from './Gallery'
+import GalleryItem from './GalleryItem'
 // Add more imports for other components and hooks if needed
-
+export { default as Gallery } from './Gallery'
+export { default as GalleryItem } from './GalleryItem'
 export { default as Button } from './Button'
 export { default as ProgressBar } from './ProgressBar'
 export { default as useLocalStorage } from './useLocalStorage'

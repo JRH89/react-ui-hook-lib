@@ -149,7 +149,45 @@
 	  }, option.label)));
 	}
 
+	function GalleryItem({
+	  item
+	}) {
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "gallery-item"
+	  }, /*#__PURE__*/React__default["default"].createElement("img", {
+	    src: item.imageSrc,
+	    alt: item.caption
+	  }));
+	}
+
+	function Gallery({
+	  items,
+	  options
+	}) {
+	  const {
+	    autoplay = false,
+	    interval = 3000
+	  } = options;
+	  const [currentIndex, setCurrentIndex] = React.useState(0);
+	  React.useEffect(() => {
+	    let timer;
+	    if (autoplay) {
+	      timer = setInterval(() => {
+	        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
+	      }, interval);
+	    }
+	    return () => clearInterval(timer);
+	  }, [autoplay, interval, items.length]);
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "gallery-container"
+	  }, /*#__PURE__*/React__default["default"].createElement(GalleryItem, {
+	    item: items[currentIndex]
+	  }));
+	}
+
 	exports.Button = Button;
+	exports.Gallery = Gallery;
+	exports.GalleryItem = GalleryItem;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledCheckbox = StyledCheckbox;
 	exports.StyledInput = StyledInput;

@@ -2,7 +2,7 @@
 .button
 {
 	background-color: blueviolet;
-	color: white;
+	color: black;
 	border-radius: 12px;
 	padding: 10px 20px;
 	transition: background-color 200ms ease, color 200ms ease;
@@ -45,14 +45,26 @@
 .button.menu
 {
 	background-color: dodgerblue;
-	color: black;
+
 }
 
 /* Hover effect for menu button */
 .button.menu:hover
 {
 	background-color: darkblue;
-	color: white;
+	color: lightgray;
+}
+
+.button.search
+{
+	background-color: yellow;
+
+}
+
+.button.search:hover
+{
+	background-color: rgb(186, 186, 46);
+	color: lightgray;
 }
 
 /* Styling for progress bar */
@@ -64,7 +76,7 @@
 	border-radius: 12px;
 	overflow: hidden;
 	top: 0;
-
+	z-index: 9999;
 	position: fixed;
 	box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.8);
 	/* Add inner shadow */
@@ -86,8 +98,6 @@
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-
-
 }
 
 .styled-input:focus
@@ -189,7 +199,6 @@
 
 .radio-dot:after
 {
-
 	position: absolute;
 	display: none;
 }
@@ -201,7 +210,6 @@
 
 .radio-dot .radio-dot:after
 {
-
 	position: absolute;
 	top: 6px;
 	left: 6px;
@@ -219,8 +227,6 @@
 	border-radius: 4px;
 	font-size: 16px;
 	width: 100%;
-
-
 }
 
 .styled-select:focus
@@ -233,31 +239,30 @@
 
 .gallery-container
 {
+	position: relative;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-}
-
-.gallery-nav
-{
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	padding: 10px;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
-	border: none;
-	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .gallery-item
 {
-	text-align: center;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.5s ease-in-out;
 }
 
-.gallery-caption
+.gallery-item img
 {
-	margin-top: 10px;
-	font-size: 14px;
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
 }
