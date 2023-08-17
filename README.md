@@ -5,9 +5,8 @@ A collection of reusable React UI components and hooks.
 npm install react-ui-hook-lib
 
 <h3>Peer Dependencies:</h3>
-react<br/>
-react-dom
-<br><br>
+react, react-dom
+<br>install by running:<br>
 npm install react react-dom
 
 <h4>Features:</h4>
