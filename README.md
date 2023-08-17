@@ -1,6 +1,6 @@
 <h1>react-ui-hook-lib</h1>
 A collection of reusable React UI components and hooks.
-
+<a href="https://test-ui-components.vercel.app">Live Demo</a><br><br>
 <h2>Installation:</h2>
 npm install react-ui-hook-lib
 
@@ -28,6 +28,5 @@ npm install react react-dom
 <img width="400px" height="300px" src="images/image5.png">
 </ul>
 
-<iframe src="https://test-ui-components.vercel.app/" width="600" height="400" style="border: none;"></iframe>
 
 
