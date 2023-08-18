@@ -8,6 +8,42 @@
 
 	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
+	function GalleryItem({
+	  item
+	}) {
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "gallery-item"
+	  }, /*#__PURE__*/React__default["default"].createElement("img", {
+	    src: item.imageSrc,
+	    alt: item.caption
+	  }));
+	}
+
+	function Gallery({
+	  items,
+	  options
+	}) {
+	  const {
+	    autoplay = false,
+	    interval = 3000
+	  } = options;
+	  const [currentIndex, setCurrentIndex] = React.useState(0);
+	  React.useEffect(() => {
+	    let timer;
+	    if (autoplay) {
+	      timer = setInterval(() => {
+	        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
+	      }, interval);
+	    }
+	    return () => clearInterval(timer);
+	  }, [autoplay, interval, items.length]);
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "gallery-container"
+	  }, /*#__PURE__*/React__default["default"].createElement(GalleryItem, {
+	    item: items[currentIndex]
+	  }));
+	}
+
 	function Button({
 	  text,
 	  className = 'button',
@@ -97,42 +133,6 @@
 	  });
 	}
 
-	function GalleryItem({
-	  item
-	}) {
-	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "gallery-item"
-	  }, /*#__PURE__*/React__default["default"].createElement("img", {
-	    src: item.imageSrc,
-	    alt: item.caption
-	  }));
-	}
-
-	function Gallery({
-	  items,
-	  options
-	}) {
-	  const {
-	    autoplay = false,
-	    interval = 3000
-	  } = options;
-	  const [currentIndex, setCurrentIndex] = React.useState(0);
-	  React.useEffect(() => {
-	    let timer;
-	    if (autoplay) {
-	      timer = setInterval(() => {
-	        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
-	      }, interval);
-	    }
-	    return () => clearInterval(timer);
-	  }, [autoplay, interval, items.length]);
-	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "gallery-container"
-	  }, /*#__PURE__*/React__default["default"].createElement(GalleryItem, {
-	    item: items[currentIndex]
-	  }));
-	}
-
 	const NotificationContext = /*#__PURE__*/React.createContext();
 	function NotificationProvider({
 	  children
@@ -196,20 +196,6 @@
 	  }, content);
 	}
 
-	// Also export each component as default
-	var index = {
-	  Gallery,
-	  GalleryItem,
-	  Button,
-	  ProgressBar,
-	  useLocalStorage,
-	  StyledInput,
-	  NotificationProvider,
-	  useNotification,
-	  Notification
-	  // Export other components and hooks as needed
-	};
-
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
@@ -217,7 +203,6 @@
 	exports.NotificationProvider = NotificationProvider;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
-	exports["default"] = index;
 	exports.useLocalStorage = useLocalStorage;
 	exports.useNotification = useNotification;
 
