@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 const NotificationContext = createContext()
 
@@ -20,8 +20,15 @@ export function NotificationProvider({ children }) {
 	const contextValue = { addNotification, removeNotification }
 
 	return (
-		<NotificationContext.Provider value={{ addNotification, removeNotification }}>			{children}
-			{/* Render notifications here */}
+		<NotificationContext.Provider value={contextValue}>
+			{children}
+			{notifications.map((notification) => (
+				<Notification
+					key={notification.id}
+					content={notification.content}
+					options={notification.options}
+				/>
+			))}
 		</NotificationContext.Provider>
 	)
 }
