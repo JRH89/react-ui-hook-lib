@@ -171,35 +171,34 @@
 	  return context;
 	}
 
-	const Notify = ({
+	const Notification$1 = ({
 	  content,
-	  type = 'info',
-	  autoClose = 3000
+	  options
 	}) => {
 	  const [show, setShow] = React.useState(true);
 	  React.useEffect(() => {
-	    if (autoClose > 0) {
+	    if (options.autoClose > 0) {
 	      const timer = setTimeout(() => {
 	        setShow(false);
-	      }, autoClose);
+	      }, options.autoClose);
 	      return () => {
 	        clearTimeout(timer);
 	      };
 	    }
-	  }, [autoClose]);
+	  }, [options.autoClose]);
 	  if (!show || !content) {
 	    return null;
 	  }
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `notification ${type} show`
+	    className: `notification ${options.type || 'info'}`
 	  }, content);
 	};
 
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
+	exports.Notification = Notification$1;
 	exports.NotificationProvider = NotificationProvider;
-	exports.Notify = Notify;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
 	exports.useLocalStorage = useLocalStorage;
