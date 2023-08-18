@@ -1,10 +1,7 @@
-// Notification.js
-
 import React, { useRef } from 'react'
 
 function Notification(props) {
-	const { notification } = props
-	const { content, options = {} } = notification
+	const { content, options = {} } = props
 	const { autoClose = 5000 } = options
 
 	const timerRef = useRef()
