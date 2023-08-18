@@ -1,6 +1,6 @@
 {
   "name": "ui-hook-react-lib",
-  "version": "1.2.32",
+  "version": "1.2.33",
   "description": "Library of React components and hooks: Progress Bar, Buttons, useLocalStorage, Image Gallery",
   "main": "dist/bundle.js",
   "scripts": {
