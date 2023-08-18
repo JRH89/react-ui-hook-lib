@@ -171,7 +171,7 @@
 	  return context;
 	}
 
-	const Notification$1 = ({
+	const Notify = ({
 	  content,
 	  type = 'info',
 	  autoClose = 3000
@@ -198,8 +198,8 @@
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
-	exports.Notification = Notification$1;
 	exports.NotificationProvider = NotificationProvider;
+	exports.Notify = Notify;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
 	exports.useLocalStorage = useLocalStorage;
