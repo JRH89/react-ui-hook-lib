@@ -1,12 +1,10 @@
+// Notification.js
 import React, { useRef } from 'react'
-import { useNotification } from './NotificationContext'
+import { useNotification } from './useNotification'
 
-function Notification({ notification }) {
+function Notification({ content, options }) {
 	const { removeNotification } = useNotification()
-	const { content, options = {} } = notification
 	const { autoClose = 5000 } = options
-
-	const timerRef = useRef()
 
 	const handleMouseEnter = () => {
 		clearTimeout(timerRef.current)
@@ -15,10 +13,12 @@ function Notification({ notification }) {
 	const handleMouseLeave = () => {
 		if (autoClose > 0) {
 			timerRef.current = setTimeout(() => {
-				removeNotification(notification.id)
+				removeNotification()
 			}, autoClose)
 		}
 	}
+
+	const timerRef = useRef()
 
 	return (
 		<div
