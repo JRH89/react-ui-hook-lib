@@ -182,10 +182,20 @@
 	    content,
 	    options
 	  } = props;
-	  if (!content) {
-	    return null; // Return null if there is no content
+	  const [show, setShow] = React.useState(true);
+	  React.useEffect(() => {
+	    if (options.autoClose > 0) {
+	      const timer = setTimeout(() => {
+	        setShow(false);
+	      }, options.autoClose);
+	      return () => {
+	        clearTimeout(timer);
+	      };
+	    }
+	  }, [options.autoClose]);
+	  if (!show || !content) {
+	    return null;
 	  }
-
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
 	    className: `notification ${options.type || 'info'} show`
 	  }, content);
