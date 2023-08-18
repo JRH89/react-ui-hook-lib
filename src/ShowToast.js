@@ -1,4 +1,4 @@
-export const showToast = (setList, type, description, interval = 3000) => {
+export default function showToast(setList, type, description, interval = 3000) {
 	const toastTypeToTitle = {
 		success: 'Success',
 		danger: 'Danger',
