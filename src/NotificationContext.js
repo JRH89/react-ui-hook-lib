@@ -3,18 +3,15 @@ import './styles.css'
 const NotificationContext = createContext()
 
 export function NotificationProvider({ children }) {
-	const [notifications, setNotifications] = useState([])
+	const [notification, setNotification] = useState(null)
 
 	const addNotification = (content, options) => {
-		const id = Date.now()
-		const notification = { id, content, options }
-		setNotifications((prevNotifications) => [...prevNotifications, notification])
+		const newNotification = { content, options }
+		setNotification(newNotification)
 	}
 
-	const removeNotification = (id) => {
-		setNotifications((prevNotifications) =>
-			prevNotifications.filter((notification) => notification.id !== id)
-		)
+	const removeNotification = () => {
+		setNotification(null)
 	}
 
 	const contextValue = { addNotification, removeNotification }
@@ -22,16 +19,16 @@ export function NotificationProvider({ children }) {
 	return (
 		<NotificationContext.Provider value={contextValue}>
 			{children}
-			{notifications.map((notification) => (
+			{notification && (
 				<Notification
-					key={notification.id}
 					content={notification.content}
 					options={notification.options}
 				/>
-			))}
+			)}
 		</NotificationContext.Provider>
 	)
 }
+
 
 function useNotification() {
 	const context = useContext(NotificationContext)
