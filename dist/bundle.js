@@ -169,7 +169,7 @@
 	  }, toast.description)))));
 	}
 
-	const showToast = (setList, type, description, interval = 3000) => {
+	function showToast(setList, type, description, interval = 3000) {
 	  const toastTypeToTitle = {
 	    success: 'Success',
 	    danger: 'Danger',
@@ -191,7 +191,7 @@
 	  setTimeout(() => {
 	    setList(updatedList => updatedList.filter(toast => toast.id !== newToast.id));
 	  }, interval);
-	};
+	}
 
 	exports.Button = Button;
 	exports.Gallery = Gallery;
