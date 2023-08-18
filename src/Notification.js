@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './styles.css'
+
 function Notification(props) {
 	const { notification } = props
 
@@ -10,34 +11,20 @@ function Notification(props) {
 	const { content, options = {} } = notification
 	const { autoClose = 3000 } = options
 
-	const timerRef = useRef()
-
-	const handleMouseEnter = () => {
-		clearTimeout(timerRef.current)
-	}
-
-	const handleMouseLeave = () => {
-		if (autoClose > 0) {
-			timerRef.current = setTimeout(() => {
-				// Code to close the notification after autoClose time
-				// Remove this line or replace it with your own logic
-				// Example: props.onClose(); if you pass onClose prop from parent
-			}, autoClose)
-		}
-	}
-
 	useEffect(() => {
+		const timer = setTimeout(() => {
+			// Code to close the notification after autoClose time
+			// Remove this line or replace it with your own logic
+			// Example: props.onClose(); if you pass onClose prop from parent
+		}, autoClose)
+
 		return () => {
-			clearTimeout(timerRef.current)
+			clearTimeout(timer)
 		}
-	}, [])
+	}, [autoClose])
 
 	return (
-		<div
-			className={`notification ${options.type || 'info'}`}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-		>
+		<div className={`notification ${options.type || 'info'}`}>
 			{content}
 		</div>
 	)
