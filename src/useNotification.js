@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 const NotificationContext = createContext()
 
-export function NotificationProvider({ children }) {
+function NotificationProvider({ children }) {
 	const [notifications, setNotifications] = useState([])
 
 	const addNotification = (content, options) => {
@@ -65,4 +65,4 @@ function Notification({ notification }) {
 	)
 }
 
-
+export { NotificationProvider, useNotification, Notification }

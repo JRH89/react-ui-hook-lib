@@ -134,13 +134,73 @@
 	}
 
 	const NotificationContext = /*#__PURE__*/React.createContext();
+	function NotificationProvider({
+	  children
+	}) {
+	  const [notifications, setNotifications] = React.useState([]);
+	  const addNotification = (content, options) => {
+	    const id = Date.now();
+	    const notification = {
+	      id,
+	      content,
+	      options
+	    };
+	    setNotifications(prevNotifications => [...prevNotifications, notification]);
+	  };
+	  const removeNotification = id => {
+	    setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== id));
+	  };
+	  return /*#__PURE__*/React__default["default"].createElement(NotificationContext.Provider, {
+	    value: {
+	      addNotification,
+	      removeNotification
+	    }
+	  }, children, /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "notification-container"
+	  }, notifications.map(notification => /*#__PURE__*/React__default["default"].createElement(Notification, {
+	    key: notification.id,
+	    notification: notification
+	  }))));
+	}
 	function useNotification() {
 	  return React.useContext(NotificationContext);
+	}
+	function Notification({
+	  notification
+	}) {
+	  const {
+	    removeNotification
+	  } = useNotification();
+	  const {
+	    content,
+	    options = {}
+	  } = notification;
+	  const {
+	    autoClose = 5000
+	  } = options;
+	  const timerRef = React.useRef();
+	  const handleMouseEnter = () => {
+	    clearTimeout(timerRef.current);
+	  };
+	  const handleMouseLeave = () => {
+	    if (autoClose > 0) {
+	      timerRef.current = setTimeout(() => {
+	        removeNotification(notification.id);
+	      }, autoClose);
+	    }
+	  };
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: `notification ${options.type || 'info'}`,
+	    onMouseEnter: handleMouseEnter,
+	    onMouseLeave: handleMouseLeave
+	  }, content);
 	}
 
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
+	exports.Notification = Notification;
+	exports.NotificationProvider = NotificationProvider;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
 	exports.useLocalStorage = useLocalStorage;
