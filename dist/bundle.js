@@ -138,7 +138,7 @@
 	  children
 	}) {
 	  const [notifications, setNotifications] = React.useState([]);
-	  const addNotification = (content, options) => {
+	  const addNotification = (content, options = {}) => {
 	    const id = Date.now();
 	    const notification = {
 	      id,
@@ -146,11 +146,6 @@
 	      options
 	    };
 	    setNotifications(prevNotifications => [...prevNotifications, notification]);
-	    if (options.autoClose > 0) {
-	      setTimeout(() => {
-	        removeNotification(id);
-	      }, options.autoClose);
-	    }
 	  };
 	  const removeNotification = id => {
 	    setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== id));
@@ -164,8 +159,8 @@
 	  }, children, notifications.map(notification => /*#__PURE__*/React__default["default"].createElement(Notification, {
 	    key: notification.id,
 	    content: notification.content,
-	    options: notification.options,
-	    onClose: () => removeNotification(notification.id)
+	    type: notification.options.type,
+	    autoClose: notification.options.autoClose
 	  })));
 	}
 	function useNotification() {
@@ -176,29 +171,29 @@
 	  return context;
 	}
 
-	function Notification$1(props) {
-	  const {
-	    content,
-	    options
-	  } = props;
+	const Notification$1 = ({
+	  content,
+	  type = 'info',
+	  autoClose = 3000
+	}) => {
 	  const [show, setShow] = React.useState(true);
 	  React.useEffect(() => {
-	    if (options.autoClose > 0) {
+	    if (autoClose > 0) {
 	      const timer = setTimeout(() => {
 	        setShow(false);
-	      }, options.autoClose);
+	      }, autoClose);
 	      return () => {
 	        clearTimeout(timer);
 	      };
 	    }
-	  }, [options.autoClose]);
+	  }, [autoClose]);
 	  if (!show || !content) {
 	    return null;
 	  }
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `notification ${options.type || 'info'} show`
+	    className: `notification ${type} show`
 	  }, content);
-	}
+	};
 
 	exports.Button = Button;
 	exports.Gallery = Gallery;
