@@ -196,6 +196,20 @@
 	  }, content);
 	}
 
+	// Also export each component as default
+	var index = {
+	  Gallery,
+	  GalleryItem,
+	  Button,
+	  ProgressBar,
+	  useLocalStorage,
+	  StyledInput,
+	  NotificationProvider,
+	  useNotification,
+	  Notification
+	  // Export other components and hooks as needed
+	};
+
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
@@ -203,6 +217,7 @@
 	exports.NotificationProvider = NotificationProvider;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
+	exports["default"] = index;
 	exports.useLocalStorage = useLocalStorage;
 	exports.useNotification = useNotification;
 
