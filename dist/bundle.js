@@ -1,48 +1,12 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["ui-hook-react-lib"] = {}, global.React));
 })(this, (function (exports, React) { 'use strict';
 
 	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
-
-	function GalleryItem({
-	  item
-	}) {
-	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "gallery-item"
-	  }, /*#__PURE__*/React__default["default"].createElement("img", {
-	    src: item.imageSrc,
-	    alt: item.caption
-	  }));
-	}
-
-	function Gallery({
-	  items,
-	  options
-	}) {
-	  const {
-	    autoplay = false,
-	    interval = 3000
-	  } = options;
-	  const [currentIndex, setCurrentIndex] = React.useState(0);
-	  React.useEffect(() => {
-	    let timer;
-	    if (autoplay) {
-	      timer = setInterval(() => {
-	        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
-	      }, interval);
-	    }
-	    return () => clearInterval(timer);
-	  }, [autoplay, interval, items.length]);
-	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "gallery-container"
-	  }, /*#__PURE__*/React__default["default"].createElement(GalleryItem, {
-	    item: items[currentIndex]
-	  }));
-	}
 
 	function Button({
 	  text,
@@ -133,6 +97,42 @@
 	  });
 	}
 
+	function GalleryItem({
+	  item
+	}) {
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "gallery-item"
+	  }, /*#__PURE__*/React__default["default"].createElement("img", {
+	    src: item.imageSrc,
+	    alt: item.caption
+	  }));
+	}
+
+	function Gallery({
+	  items,
+	  options
+	}) {
+	  const {
+	    autoplay = false,
+	    interval = 3000
+	  } = options;
+	  const [currentIndex, setCurrentIndex] = React.useState(0);
+	  React.useEffect(() => {
+	    let timer;
+	    if (autoplay) {
+	      timer = setInterval(() => {
+	        setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
+	      }, interval);
+	    }
+	    return () => clearInterval(timer);
+	  }, [autoplay, interval, items.length]);
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "gallery-container"
+	  }, /*#__PURE__*/React__default["default"].createElement(GalleryItem, {
+	    item: items[currentIndex]
+	  }));
+	}
+
 	const NotificationContext = /*#__PURE__*/React.createContext();
 	function NotificationProvider({
 	  children
@@ -146,60 +146,55 @@
 	      options
 	    };
 	    setNotifications(prevNotifications => [...prevNotifications, notification]);
+	    if (options.autoClose > 0) {
+	      setTimeout(() => {
+	        removeNotification(id);
+	      }, options.autoClose);
+	    }
 	  };
 	  const removeNotification = id => {
 	    setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== id));
 	  };
+	  const contextValue = {
+	    addNotification,
+	    removeNotification
+	  };
 	  return /*#__PURE__*/React__default["default"].createElement(NotificationContext.Provider, {
-	    value: {
-	      addNotification,
-	      removeNotification
-	    }
-	  }, children, /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "notification-container"
-	  }, notifications.map(notification => /*#__PURE__*/React__default["default"].createElement(Notification, {
+	    value: contextValue
+	  }, children, notifications.map(notification => /*#__PURE__*/React__default["default"].createElement(Notification, {
 	    key: notification.id,
-	    notification: notification
-	  }))));
+	    content: notification.content,
+	    options: notification.options,
+	    onClose: () => removeNotification(notification.id)
+	  })));
 	}
 	function useNotification() {
-	  return React.useContext(NotificationContext);
+	  const context = React.useContext(NotificationContext);
+	  if (!context) {
+	    throw new Error('useNotification must be used within a NotificationProvider');
+	  }
+	  return context;
 	}
-	function Notification({
-	  notification
-	}) {
-	  const {
-	    removeNotification
-	  } = useNotification();
+
+	// Notification.js
+	function Notification$1(props) {
 	  const {
 	    content,
-	    options = {}
-	  } = notification;
-	  const {
-	    autoClose = 5000
-	  } = options;
-	  const timerRef = React.useRef();
-	  const handleMouseEnter = () => {
-	    clearTimeout(timerRef.current);
-	  };
-	  const handleMouseLeave = () => {
-	    if (autoClose > 0) {
-	      timerRef.current = setTimeout(() => {
-	        removeNotification(notification.id);
-	      }, autoClose);
-	    }
-	  };
+	    options
+	  } = props;
+	  if (!content) {
+	    return null; // Return null if there is no content
+	  }
+
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `notification ${options.type || 'info'}`,
-	    onMouseEnter: handleMouseEnter,
-	    onMouseLeave: handleMouseLeave
+	    className: `notification ${options.type || 'info'} show`
 	  }, content);
 	}
 
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
-	exports.Notification = Notification;
+	exports.Notification = Notification$1;
 	exports.NotificationProvider = NotificationProvider;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;

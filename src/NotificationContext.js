@@ -40,7 +40,7 @@ export function NotificationProvider({ children }) {
 	)
 }
 
-function useNotification() {
+export function useNotification() {
 	const context = useContext(NotificationContext)
 	if (!context) {
 		throw new Error('useNotification must be used within a NotificationProvider')
@@ -48,4 +48,4 @@ function useNotification() {
 	return context
 }
 
-export { NotificationProvider, useNotification }
+
