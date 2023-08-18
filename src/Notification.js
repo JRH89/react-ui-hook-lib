@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './styles.css'
 
 function Notification(props) {
-	const { notification } = props
+	const { notification, onClose } = props
+
+	useEffect(() => {
+		if (notification && notification.options.autoClose > 0) {
+			const timer = setTimeout(onClose, notification.options.autoClose)
+			return () => clearTimeout(timer)
+		}
+	}, [notification, onClose])
 
 	if (!notification) {
 		return null // Return null if there is no notification
 	}
 
 	const { content, options = {} } = notification
-	const { autoClose = 3000 } = options
-
-	const [visible, setVisible] = useState(true)
-
-	useEffect(() => {
-		if (autoClose > 0) {
-			const timer = setTimeout(() => {
-				setVisible(false)
-			}, autoClose)
-
-			return () => {
-				clearTimeout(timer)
-			}
-		}
-	}, [autoClose])
 
 	return (
-		<div className={`notification ${options.type || 'info'} ${visible ? 'show' : ''}`}>
+		<div className={`notification ${options.type || 'info'} show`}>
 			{content}
 		</div>
 	)

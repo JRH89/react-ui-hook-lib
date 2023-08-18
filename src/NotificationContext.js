@@ -3,15 +3,24 @@ import './styles.css'
 const NotificationContext = createContext()
 
 export function NotificationProvider({ children }) {
-	const [notification, setNotification] = useState(null)
+	const [notifications, setNotifications] = useState([])
 
 	const addNotification = (content, options) => {
-		const newNotification = { content, options }
-		setNotification(newNotification)
+		const id = Date.now()
+		const notification = { id, content, options }
+		setNotifications((prevNotifications) => [...prevNotifications, notification])
+
+		if (options.autoClose > 0) {
+			setTimeout(() => {
+				removeNotification(id)
+			}, options.autoClose)
+		}
 	}
 
-	const removeNotification = () => {
-		setNotification(null)
+	const removeNotification = (id) => {
+		setNotifications((prevNotifications) =>
+			prevNotifications.filter((notification) => notification.id !== id)
+		)
 	}
 
 	const contextValue = { addNotification, removeNotification }
@@ -19,16 +28,17 @@ export function NotificationProvider({ children }) {
 	return (
 		<NotificationContext.Provider value={contextValue}>
 			{children}
-			{notification && (
+			{notifications.map((notification) => (
 				<Notification
+					key={notification.id}
 					content={notification.content}
 					options={notification.options}
+					onClose={() => removeNotification(notification.id)}
 				/>
-			)}
+			))}
 		</NotificationContext.Provider>
 	)
 }
-
 
 function useNotification() {
 	const context = useContext(NotificationContext)
