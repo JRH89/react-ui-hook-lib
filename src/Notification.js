@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 
-const Notification = ({ content, type = 'info', autoClose = 3000 }) => {
+const Notify = ({ content, type = 'info', autoClose = 3000 }) => {
 	const [show, setShow] = useState(true)
 
 	useEffect(() => {
@@ -27,4 +27,4 @@ const Notification = ({ content, type = 'info', autoClose = 3000 }) => {
 	)
 }
 
-export default Notification
+export default Notify
