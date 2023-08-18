@@ -20,13 +20,18 @@ export function NotificationProvider({ children }) {
 	const contextValue = { addNotification, removeNotification }
 
 	return (
-		<NotificationContext.Provider value={contextValue}>
-			{children}
+		<NotificationContext.Provider value={{ addNotification, removeNotification }}>			{children}
 			{/* Render notifications here */}
 		</NotificationContext.Provider>
 	)
 }
 
-export function useNotification() {
-	return useContext(NotificationContext)
+function useNotification() {
+	const context = useContext(NotificationContext)
+	if (!context) {
+		throw new Error('useNotification must be used within a NotificationProvider')
+	}
+	return context
 }
+
+export { NotificationProvider, useNotification }
