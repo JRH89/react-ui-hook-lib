@@ -8,8 +8,6 @@
 
 	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-	var styles = {"container":"Toast-module_container__yfhSl","bottom-right":"Toast-module_bottom-right__85BD-","toast-in-right":"Toast-module_toast-in-right__nfzLE","top-right":"Toast-module_top-right__4GZxd","notification":"Toast-module_notification__3F4VJ","toast":"Toast-module_toast__g-Wol","title":"Toast-module_title__cOpi4","description":"Toast-module_description__5reRH","success":"Toast-module_success__bCO8-","danger":"Toast-module_danger__b7PeN","info":"Toast-module_info__CKI9r","warning":"Toast-module_warning__OJPEX"};
-
 	function Button({
 	  text,
 	  className = 'button',
@@ -135,7 +133,43 @@
 	  }));
 	}
 
-	const showToast = (setList, type, description, interval = 3000) => {
+	// Toast.js
+
+	function Toast({
+	  toastlist,
+	  position,
+	  setList,
+	  interval = 3000
+	}) {
+	  const deleteToast = React.useCallback(id => {
+	    const toastListItem = toastlist.filter(e => e.id !== id);
+	    setList(toastListItem);
+	  }, [toastlist, setList]);
+	  React.useEffect(() => {
+	    const toastInterval = setInterval(() => {
+	      if (toastlist.length) {
+	        deleteToast(toastlist[0].id);
+	      }
+	    }, interval);
+	    return () => {
+	      clearInterval(toastInterval);
+	    };
+	  }, [toastlist, deleteToast, interval]);
+	  return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: `${position}`
+	  }, toastlist.map(toast => /*#__PURE__*/React__default["default"].createElement("div", {
+	    key: toast.id,
+	    className: `notification toast ${position} ${toast.type}`
+	  }, /*#__PURE__*/React__default["default"].createElement("button", {
+	    onClick: () => deleteToast(toast.id)
+	  }, "X"), /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("p", {
+	    className: "title"
+	  }, toast.title), /*#__PURE__*/React__default["default"].createElement("p", {
+	    className: "description"
+	  }, toast.description)))));
+	}
+
+	function ShowToast(setList, type, description, interval = 3000) {
 	  const toastTypeToTitle = {
 	    success: 'Success',
 	    danger: 'Danger',
@@ -157,49 +191,15 @@
 	  setTimeout(() => {
 	    setList(updatedList => updatedList.filter(toast => toast.id !== newToast.id));
 	  }, interval);
-	};
-	const Toast = ({
-	  toastlist,
-	  position,
-	  setList,
-	  interval = 3000
-	}) => {
-	  const deleteToast = React.useCallback(id => {
-	    const toastListItem = toastlist.filter(e => e.id !== id);
-	    setList(toastListItem);
-	  }, [toastlist, setList]);
-	  React.useEffect(() => {
-	    const toastInterval = setInterval(() => {
-	      if (toastlist.length) {
-	        deleteToast(toastlist[0].id);
-	      }
-	    }, interval); // Use the interval prop here
-
-	    return () => {
-	      clearInterval(toastInterval);
-	    };
-	  }, [toastlist, deleteToast, interval]);
-	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `${styles.container} ${styles[position]}`
-	  }, toastlist.map(toast => /*#__PURE__*/React__default["default"].createElement("div", {
-	    key: toast.id,
-	    className: `${styles.notification} ${styles.toast} ${styles[position]} ${styles[toast.type]}`
-	  }, /*#__PURE__*/React__default["default"].createElement("button", {
-	    onClick: () => deleteToast(toast.id)
-	  }, "X"), /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("p", {
-	    className: styles.title
-	  }, toast.title), /*#__PURE__*/React__default["default"].createElement("p", {
-	    className: styles.description
-	  }, toast.description)))));
-	};
+	}
 
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
 	exports.ProgressBar = ProgressBar;
+	exports.ShowToast = ShowToast;
 	exports.StyledInput = StyledInput;
 	exports.Toast = Toast;
-	exports.showToast = showToast;
 	exports.useLocalStorage = useLocalStorage;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
