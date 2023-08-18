@@ -1,10 +1,12 @@
-import React from 'react'
-import { useNotification } from './useNotification'
+import React, { useRef } from 'react'
+import { useNotification } from './NotificationContext'
 
 function Notification({ notification }) {
 	const { removeNotification } = useNotification()
 	const { content, options = {} } = notification
 	const { autoClose = 5000 } = options
+
+	const timerRef = useRef()
 
 	const handleMouseEnter = () => {
 		clearTimeout(timerRef.current)
@@ -17,8 +19,6 @@ function Notification({ notification }) {
 			}, autoClose)
 		}
 	}
-
-	const timerRef = useRef()
 
 	return (
 		<div
