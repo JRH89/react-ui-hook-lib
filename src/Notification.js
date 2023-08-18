@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-
+import './styles.css'
 function Notification(props) {
 	const { notification } = props
 

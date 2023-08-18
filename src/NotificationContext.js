@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-
+import './styles.css'
 const NotificationContext = createContext()
 
 export function NotificationProvider({ children }) {
