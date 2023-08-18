@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-
+import './styles.css'
 export const Alert = ({ variant }) => {
 	const [open, setOpen] = useState(true)
 	if (open)
