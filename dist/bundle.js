@@ -1,6 +1,6 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom'], factory) :
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["ui-hook-react-lib"] = {}, global.React));
 })(this, (function (exports, React) { 'use strict';
 
@@ -133,12 +133,18 @@
 	  }));
 	}
 
+	const NotificationContext = /*#__PURE__*/React.createContext();
+	function useNotification() {
+	  return React.useContext(NotificationContext);
+	}
+
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
 	exports.useLocalStorage = useLocalStorage;
+	exports.useNotification = useNotification;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
