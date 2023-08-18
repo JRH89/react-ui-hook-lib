@@ -292,7 +292,7 @@
 	background-color: #333;
 	color: #fff;
 	font-size: 14px;
-	opacity: 0;
+	opacity: 1;
 	transform: translateY(-100%);
 	transition: opacity 0.2s ease, transform 0.2s ease;
 }
