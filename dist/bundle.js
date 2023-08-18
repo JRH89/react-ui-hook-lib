@@ -176,7 +176,6 @@
 	  return context;
 	}
 
-	// Notification.js
 	function Notification$1(props) {
 	  const {
 	    content,

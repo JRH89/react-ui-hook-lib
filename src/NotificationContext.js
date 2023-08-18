@@ -1,20 +1,14 @@
 import React, { createContext, useContext, useState } from 'react'
-import './styles.css'
+
 const NotificationContext = createContext()
 
 export function NotificationProvider({ children }) {
 	const [notifications, setNotifications] = useState([])
 
-	const addNotification = (content, options) => {
+	const addNotification = (content, options = {}) => {
 		const id = Date.now()
 		const notification = { id, content, options }
 		setNotifications((prevNotifications) => [...prevNotifications, notification])
-
-		if (options.autoClose > 0) {
-			setTimeout(() => {
-				removeNotification(id)
-			}, options.autoClose)
-		}
 	}
 
 	const removeNotification = (id) => {
@@ -32,8 +26,8 @@ export function NotificationProvider({ children }) {
 				<Notification
 					key={notification.id}
 					content={notification.content}
-					options={notification.options}
-					onClose={() => removeNotification(notification.id)}
+					type={notification.options.type}
+					autoClose={notification.options.autoClose}
 				/>
 			))}
 		</NotificationContext.Provider>
@@ -47,5 +41,3 @@ export function useNotification() {
 	}
 	return context
 }
-
-
