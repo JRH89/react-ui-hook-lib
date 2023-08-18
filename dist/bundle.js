@@ -194,6 +194,80 @@
 	  }, content);
 	};
 
+	function Alert({
+	  variant
+	}) {
+	  const [open, setOpen] = React.useState(true);
+	  if (open) return /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "alert-container",
+	    style: {
+	      background: variant.mainColor,
+	      border: "0.1rem solid " + variant.secondaryColor
+	    }
+	  }, /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "symbol-container",
+	    style: {
+	      background: variant.secondaryColor
+	    }
+	  }, /*#__PURE__*/React__default["default"].createElement("span", {
+	    class: "material-symbols-outlined symbol"
+	  }, variant.symbol), " "), /*#__PURE__*/React__default["default"].createElement("div", {
+	    className: "description-container"
+	  }, /*#__PURE__*/React__default["default"].createElement("span", {
+	    className: "description-title"
+	  }, variant.title, ":"), /*#__PURE__*/React__default["default"].createElement("span", {
+	    className: "description-text"
+	  }, variant.text)), /*#__PURE__*/React__default["default"].createElement("a", {
+	    className: "symbol-close-link",
+	    onClick: () => setOpen(false)
+	  }, /*#__PURE__*/React__default["default"].createElement("span", {
+	    class: "material-symbols-outlined "
+	  }, "close")));
+	}
+
+	const variants = [
+	//red
+	{
+	  mainColor: "#FDEDED",
+	  secondaryColor: "#F16360",
+	  symbol: "error",
+	  title: "Error",
+	  text: "The action was not carried out succesfully please try again."
+	},
+	//blue
+	{
+	  mainColor: "#E5F6FD",
+	  secondaryColor: "#1AB1F5",
+	  symbol: "info",
+	  title: "Information",
+	  text: "Our newest module can be bought, or you can always just use our 30 day trial."
+	},
+	//green
+	{
+	  mainColor: "#EDFEEE",
+	  secondaryColor: "#5CB660",
+	  symbol: "check_circle",
+	  title: "Success",
+	  text: "Saving of your newest settings are successfuly carried out. "
+	},
+	//yellow
+	{
+	  mainColor: "#FFF4E5",
+	  secondaryColor: "#FFA117",
+	  symbol: "warning",
+	  title: "Warning",
+	  text: "Your trial is ending soon, please click here to renew it."
+	},
+	//pink
+	{
+	  mainColor: "#FFC0CB",
+	  secondaryColor: "#FF69B4",
+	  symbol: "pets",
+	  title: "Check it out",
+	  text: "Fun and cute pictures of dogs are to be released daily from now on!"
+	}];
+
+	exports.Alert = Alert;
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
@@ -203,6 +277,7 @@
 	exports.StyledInput = StyledInput;
 	exports.useLocalStorage = useLocalStorage;
 	exports.useNotification = useNotification;
+	exports.variants = variants;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 

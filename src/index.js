@@ -25,4 +25,4 @@ export { NotificationProvider, useNotification } from './NotificationContext'
 export { default as Notification } from './Notification'
 // Add more exports for other components and hooks if needed
 export { default as Alert } from './Alert'
-export { default as variants } from './variants'
+export { variants } from './variants'
