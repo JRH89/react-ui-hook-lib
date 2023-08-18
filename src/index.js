@@ -19,7 +19,5 @@ export { default as Button } from './Button'
 export { default as ProgressBar } from './ProgressBar'
 export { default as useLocalStorage } from './useLocalStorage'
 export { default as StyledInput } from './StyledInput'
-export { default as useNotification } from './useNotification' // Export useNotification hook
-export { default as Notification } from './Notification' // Export Notification component
 export { NotificationProvider, useNotification, Notification };
 // Add more exports for other components and hooks if needed
