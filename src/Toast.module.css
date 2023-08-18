@@ -1,0 +1,113 @@
+.container
+{
+	font-size: 14px;
+	position: fixed;
+	z-index: 10;
+}
+
+.bottom-right
+{
+	bottom: 1em;
+	right: .5em;
+	animation: toast-in-right .7s;
+}
+
+.top-right
+{
+	top: 1em;
+	right: .5em;
+	animation: toast-in-right .7s;
+}
+
+.notification
+{
+	margin-bottom: 1em;
+	border-radius: 0.25em;
+	box-shadow: 0 0 0.625em #999;
+	/* 10px in em */
+	color: #000;
+	opacity: 0.9;
+	transition: 0.3s ease;
+}
+
+.notification:hover
+{
+	box-shadow: 0 0 0.75em #fff;
+	/* 12px in em */
+	opacity: 1;
+}
+
+.toast
+{
+	height: 3.125em;
+	/* 50px in em */
+	width: 22.8125em;
+	/* 365px in em */
+	color: #fff;
+	padding: 1.25em 0.9375em 0.625em 0.625em;
+	/* 20px 15px 10px 10px in em */
+}
+
+.container button
+{
+	float: right;
+	background: none;
+	border: none;
+	color: #fff;
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.title
+{
+	font-weight: 700;
+	font-size: 1em;
+	/* 16px in em */
+	text-align: left;
+	margin-top: 0;
+	margin-bottom: 0.375em;
+	/* 6px in em */
+	width: 18.75em;
+	/* 300px in em */
+	height: 1.125em;
+	/* 18px in em */
+}
+
+.description
+{
+	margin: 0;
+	text-align: left;
+}
+
+@keyframes toast-in-right
+{
+	from
+	{
+		transform: translateX(100%);
+	}
+
+	to
+	{
+		transform: translateX(0%);
+	}
+}
+
+.success
+{
+	background-color: green;
+}
+
+.danger
+{
+	background-color: red;
+}
+
+.info
+{
+	background-color: dodgerblue;
+}
+
+.warning
+{
+	background-color: darkorange;
+}
