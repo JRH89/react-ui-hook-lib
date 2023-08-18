@@ -1,12 +1,26 @@
 // Notification.js
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 
 function Notification(props) {
 	const { content, options } = props
 
-	if (!content) {
-		return null // Return null if there is no content
+	const [show, setShow] = useState(true)
+
+	useEffect(() => {
+		if (options.autoClose > 0) {
+			const timer = setTimeout(() => {
+				setShow(false)
+			}, options.autoClose)
+
+			return () => {
+				clearTimeout(timer)
+			}
+		}
+	}, [options.autoClose])
+
+	if (!show || !content) {
+		return null
 	}
 
 	return (
