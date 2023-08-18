@@ -8,6 +8,8 @@
 
 	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
+	var styles = {"container":"Toast-module_container__yfhSl","bottom-right":"Toast-module_bottom-right__85BD-","toast-in-right":"Toast-module_toast-in-right__nfzLE","top-right":"Toast-module_top-right__4GZxd","notification":"Toast-module_notification__3F4VJ","toast":"Toast-module_toast__g-Wol","title":"Toast-module_title__cOpi4","description":"Toast-module_description__5reRH","success":"Toast-module_success__bCO8-","danger":"Toast-module_danger__b7PeN","info":"Toast-module_info__CKI9r","warning":"Toast-module_warning__OJPEX"};
+
 	function Button({
 	  text,
 	  className = 'button',
@@ -133,151 +135,72 @@
 	  }));
 	}
 
-	const NotificationContext = /*#__PURE__*/React.createContext();
-	function NotificationProvider({
-	  children
-	}) {
-	  const [notifications, setNotifications] = React.useState([]);
-	  const addNotification = (content, options = {}) => {
-	    const id = Date.now();
-	    const notification = {
-	      id,
-	      content,
-	      options
-	    };
-	    setNotifications(prevNotifications => [...prevNotifications, notification]);
+	const showToast = (setList, type, description, interval = 3000) => {
+	  const toastTypeToTitle = {
+	    success: 'Success',
+	    danger: 'Danger',
+	    info: 'Info',
+	    warning: 'Warning'
+	    // Add more mappings if needed
 	  };
-	  const removeNotification = id => {
-	    setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== id));
-	  };
-	  const contextValue = {
-	    addNotification,
-	    removeNotification
-	  };
-	  return /*#__PURE__*/React__default["default"].createElement(NotificationContext.Provider, {
-	    value: contextValue
-	  }, children, notifications.map(notification => /*#__PURE__*/React__default["default"].createElement(Notification, {
-	    key: notification.id,
-	    content: notification.content,
-	    type: notification.options.type,
-	    autoClose: notification.options.autoClose
-	  })));
-	}
-	function useNotification() {
-	  const context = React.useContext(NotificationContext);
-	  if (!context) {
-	    throw new Error('useNotification must be used within a NotificationProvider');
-	  }
-	  return context;
-	}
 
-	const Notification$1 = ({
-	  content,
-	  options
+	  const newToast = {
+	    id: Date.now(),
+	    type,
+	    title: toastTypeToTitle[type],
+	    // Set the title based on the type
+	    description
+	  };
+	  setList(prevList => [...prevList, newToast]);
+
+	  // Automatically remove the toast after the specified interval
+	  setTimeout(() => {
+	    setList(updatedList => updatedList.filter(toast => toast.id !== newToast.id));
+	  }, interval);
+	};
+	const Toast = ({
+	  toastlist,
+	  position,
+	  setList,
+	  interval = 3000
 	}) => {
-	  const [show, setShow] = React.useState(true);
+	  const deleteToast = React.useCallback(id => {
+	    const toastListItem = toastlist.filter(e => e.id !== id);
+	    setList(toastListItem);
+	  }, [toastlist, setList]);
 	  React.useEffect(() => {
-	    if (options.autoClose > 0) {
-	      const timer = setTimeout(() => {
-	        setShow(false);
-	      }, options.autoClose);
-	      return () => {
-	        clearTimeout(timer);
-	      };
-	    }
-	  }, [options.autoClose]);
-	  if (!show || !content) {
-	    return null;
-	  }
+	    const toastInterval = setInterval(() => {
+	      if (toastlist.length) {
+	        deleteToast(toastlist[0].id);
+	      }
+	    }, interval); // Use the interval prop here
+
+	    return () => {
+	      clearInterval(toastInterval);
+	    };
+	  }, [toastlist, deleteToast, interval]);
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `notification ${options.type || 'info'}`
-	  }, content);
+	    className: `${styles.container} ${styles[position]}`
+	  }, toastlist.map(toast => /*#__PURE__*/React__default["default"].createElement("div", {
+	    key: toast.id,
+	    className: `${styles.notification} ${styles.toast} ${styles[position]} ${styles[toast.type]}`
+	  }, /*#__PURE__*/React__default["default"].createElement("button", {
+	    onClick: () => deleteToast(toast.id)
+	  }, "X"), /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("p", {
+	    className: styles.title
+	  }, toast.title), /*#__PURE__*/React__default["default"].createElement("p", {
+	    className: styles.description
+	  }, toast.description)))));
 	};
 
-	function Alert({
-	  variant
-	}) {
-	  const [open, setOpen] = React.useState(true);
-	  if (open) return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "alert-container",
-	    style: {
-	      background: variant.mainColor,
-	      border: "0.1rem solid " + variant.secondaryColor
-	    }
-	  }, /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "symbol-container",
-	    style: {
-	      background: variant.secondaryColor
-	    }
-	  }, /*#__PURE__*/React__default["default"].createElement("span", {
-	    class: "material-symbols-outlined symbol"
-	  }, variant.symbol), " "), /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: "description-container"
-	  }, /*#__PURE__*/React__default["default"].createElement("span", {
-	    className: "description-title"
-	  }, variant.title, ":"), /*#__PURE__*/React__default["default"].createElement("span", {
-	    className: "description-text"
-	  }, variant.text)), /*#__PURE__*/React__default["default"].createElement("a", {
-	    className: "symbol-close-link",
-	    onClick: () => setOpen(false)
-	  }, /*#__PURE__*/React__default["default"].createElement("span", {
-	    class: "material-symbols-outlined "
-	  }, "close")));
-	}
-
-	const variants = [
-	//red
-	{
-	  mainColor: "#FDEDED",
-	  secondaryColor: "#F16360",
-	  symbol: "error",
-	  title: "Error",
-	  text: "The action was not carried out succesfully please try again."
-	},
-	//blue
-	{
-	  mainColor: "#E5F6FD",
-	  secondaryColor: "#1AB1F5",
-	  symbol: "info",
-	  title: "Information",
-	  text: "Our newest module can be bought, or you can always just use our 30 day trial."
-	},
-	//green
-	{
-	  mainColor: "#EDFEEE",
-	  secondaryColor: "#5CB660",
-	  symbol: "check_circle",
-	  title: "Success",
-	  text: "Saving of your newest settings are successfuly carried out. "
-	},
-	//yellow
-	{
-	  mainColor: "#FFF4E5",
-	  secondaryColor: "#FFA117",
-	  symbol: "warning",
-	  title: "Warning",
-	  text: "Your trial is ending soon, please click here to renew it."
-	},
-	//pink
-	{
-	  mainColor: "#FFC0CB",
-	  secondaryColor: "#FF69B4",
-	  symbol: "pets",
-	  title: "Check it out",
-	  text: "Fun and cute pictures of dogs are to be released daily from now on!"
-	}];
-
-	exports.Alert = Alert;
 	exports.Button = Button;
 	exports.Gallery = Gallery;
 	exports.GalleryItem = GalleryItem;
-	exports.Notification = Notification$1;
-	exports.NotificationProvider = NotificationProvider;
 	exports.ProgressBar = ProgressBar;
 	exports.StyledInput = StyledInput;
+	exports.Toast = Toast;
+	exports.showToast = showToast;
 	exports.useLocalStorage = useLocalStorage;
-	exports.useNotification = useNotification;
-	exports.variants = variants;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
