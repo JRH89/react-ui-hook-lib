@@ -66,4 +66,3 @@ function Notification({ notification }) {
 }
 
 
-export default useNotification
