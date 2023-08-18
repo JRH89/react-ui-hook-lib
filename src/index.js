@@ -10,7 +10,7 @@ import StyledInput from './StyledInput'
 import Gallery from './Gallery'
 import GalleryItem from './GalleryItem'
 import Toast from './Toast'
-import ShowToast from './ShowToast'
+import showToast from './showToast'
 
 
 // Export individual components and hooks
@@ -21,4 +21,4 @@ export { default as ProgressBar } from './ProgressBar'
 export { default as useLocalStorage } from './useLocalStorage'
 export { default as StyledInput } from './StyledInput'
 export { default as Toast } from './Toast'
-export { default as ShowToast } from './ShowToast'
+export { showToast } from './showToast'
