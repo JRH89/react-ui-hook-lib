@@ -1,29 +1,13 @@
 // Notification.js
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import './styles.css'
 
 function Notification(props) {
-	const { notification } = props
+	const { content, options } = props
 
-	if (!notification) {
-		return null // Return null if there is no notification
+	if (!content) {
+		return null // Return null if there is no content
 	}
-
-	const { content, options = {} } = notification
-	const { autoClose = 3000 } = options
-
-	const timerRef = useRef()
-
-	useEffect(() => {
-		timerRef.current = setTimeout(() => {
-			// Clear the notification after autoClose time
-			props.onClose() // Call the onClose prop to clear the notification
-		}, autoClose)
-
-		return () => {
-			clearTimeout(timerRef.current)
-		}
-	}, [])
 
 	return (
 		<div className={`notification ${options.type || 'info'} show`}>

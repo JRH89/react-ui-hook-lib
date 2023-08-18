@@ -274,6 +274,7 @@
 	object-fit: contain;
 }
 
+/* Notification.css */
 .notification-container
 {
 	position: fixed;
@@ -301,4 +302,24 @@
 {
 	opacity: 1;
 	transform: translateY(0);
+}
+
+.notification.info
+{
+	background-color: dodgerblue;
+}
+
+.notification.success
+{
+	background-color: #28a745;
+}
+
+.notification.warning
+{
+	background-color: #ffc107;
+}
+
+.notification.error
+{
+	background-color: #dc3545;
 }
