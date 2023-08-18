@@ -275,36 +275,21 @@
 }
 
 /* Notification.css */
-/* Notification.css */
-.notification-container
+.notification
 {
 	position: fixed;
 	top: 20px;
 	right: 20px;
-	z-index: 9999;
-}
-
-.notification
-{
-	position: relative;
-	display: block;
 	padding: 12px;
-	margin-bottom: 8px;
 	border-radius: 4px;
 	background-color: #333;
 	color: #fff;
 	font-size: 14px;
-	opacity: 0;
-	transform: translateY(-100%);
-	transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.notification.show
-{
 	opacity: 1;
-	transform: translateY(0);
+	transition: opacity 0.5s ease;
 }
 
+/* Style for different notification types */
 .notification.info
 {
 	background-color: dodgerblue;
@@ -315,12 +300,4 @@
 	background-color: #28a745;
 }
 
-.notification.warning
-{
-	background-color: #ffc107;
-}
-
-.notification.error
-{
-	background-color: #dc3545;
-}
+/* Add similar styles for warning and error */

@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 
-const Notify = ({ content, type = 'info', autoClose = 3000 }) => {
+const Notification = ({ content, options }) => {
 	const [show, setShow] = useState(true)
 
 	useEffect(() => {
-		if (autoClose > 0) {
+		if (options.autoClose > 0) {
 			const timer = setTimeout(() => {
 				setShow(false)
-			}, autoClose)
+			}, options.autoClose)
 
 			return () => {
 				clearTimeout(timer)
 			}
 		}
-	}, [autoClose])
+	}, [options.autoClose])
 
 	if (!show || !content) {
 		return null
 	}
 
 	return (
-		<div className={`notification ${type} show`}>
+		<div className={`notification ${options.type || 'info'}`}>
 			{content}
 		</div>
 	)
 }
 
-export default Notify
+export default Notification
