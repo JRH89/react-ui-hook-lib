@@ -1,7 +1,7 @@
 <h1>react-ui-hook-lib</h1>
 A collection of reusable React UI components and hooks.
 <br><br><a href="https://test-ui-components.vercel.app">Live Demo</a><br>
-  
+  <img width="500px" height="500px" src="images/image6.png">
 <h2>Installation:</h2>
 <p>npm install react-ui-hook-lib</p>
 <p>import { Gallery, Button, ProgressBar, useLocalStorage, StyledInput } from 'ui-hook-react-lib'<br>
