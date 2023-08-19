@@ -14,6 +14,8 @@ npm install react react-dom
 <h5>UI</h5>
 <ul>
 <li>Progress Bar</li>
+  <li>Toast Notifications</li>
+  <img src="images/image6.png">
 <img width="400px" height="350px" src="images/image.png">
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
 <img width="500px" height="500px" src="images/image3.png">
