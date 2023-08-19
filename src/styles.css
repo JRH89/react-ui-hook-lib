@@ -328,6 +328,8 @@
 {
 	float: right;
 	background: none;
+	margin-top: 0;
+	font-weight: 700;
 	border: none;
 	color: #000000;
 	opacity: 0.8;
