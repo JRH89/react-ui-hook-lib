@@ -2,11 +2,11 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["ui-hook-react-lib"] = {}, global.React));
-})(this, (function (exports, React) { 'use strict';
+})(this, (function (exports, React$1) { 'use strict';
 
 	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+	var React__default = /*#__PURE__*/_interopDefaultLegacy(React$1);
 
 	function Button({
 	  text,
@@ -23,8 +23,8 @@
 	  height = 10,
 	  color = 'green'
 	}) {
-	  const [progress, setProgress] = React.useState(0);
-	  React.useEffect(() => {
+	  const [progress, setProgress] = React$1.useState(0);
+	  React$1.useEffect(() => {
 	    const handleScroll = () => {
 	      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
 	      const scrollProgress = window.scrollY / totalHeight * 100;
@@ -54,8 +54,8 @@
 	  } = options;
 	  const storedValue = isClient ? localStorage.getItem(key) : null;
 	  const initial = storedValue ? JSON.parse(storedValue) : initialValue;
-	  const [value, setValue] = React.useState(initial);
-	  React.useEffect(() => {
+	  const [value, setValue] = React$1.useState(initial);
+	  React$1.useEffect(() => {
 	    if (isClient) {
 	      if (expireAfter !== null) {
 	        const storedTime = localStorage.getItem(`${key}_time`);
@@ -116,8 +116,8 @@
 	    autoplay = false,
 	    interval = 3000
 	  } = options;
-	  const [currentIndex, setCurrentIndex] = React.useState(0);
-	  React.useEffect(() => {
+	  const [currentIndex, setCurrentIndex] = React$1.useState(0);
+	  React$1.useEffect(() => {
 	    let timer;
 	    if (autoplay) {
 	      timer = setInterval(() => {
@@ -133,41 +133,41 @@
 	  }));
 	}
 
-	// Toast.js
-
-	function Toast({
+	const Toast = ({
 	  toastlist,
 	  position,
-	  setList,
-	  interval = 3000
-	}) {
-	  const deleteToast = React.useCallback(id => {
+	  setList
+	}) => {
+	  const deleteToast = React$1.useCallback(id => {
 	    const toastListItem = toastlist.filter(e => e.id !== id);
 	    setList(toastListItem);
 	  }, [toastlist, setList]);
-	  React.useEffect(() => {
-	    const toastInterval = setInterval(() => {
+	  React$1.useEffect(() => {
+	    const interval = setInterval(() => {
 	      if (toastlist.length) {
 	        deleteToast(toastlist[0].id);
 	      }
-	    }, interval);
+	    }, 3000);
 	    return () => {
-	      clearInterval(toastInterval);
+	      clearInterval(interval);
 	    };
-	  }, [toastlist, deleteToast, interval]);
-	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `${position}`
-	  }, toastlist.map(toast => /*#__PURE__*/React__default["default"].createElement("div", {
-	    key: toast.id,
-	    className: `notification toast ${position} ${toast.type}`
-	  }, /*#__PURE__*/React__default["default"].createElement("button", {
+	  }, [toastlist, deleteToast]);
+	  return /*#__PURE__*/React.createElement("div", {
+	    className: `${container} ${[position]}`
+	  }, toastlist.map((toast, i) => /*#__PURE__*/React.createElement("div", {
+	    key: i,
+	    className: `${notification} ${toast} ${[position]}`,
+	    style: {
+	      backgroundColor: toast.backgroundColor
+	    }
+	  }, /*#__PURE__*/React.createElement("button", {
 	    onClick: () => deleteToast(toast.id)
-	  }, "X"), /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("p", {
-	    className: "title"
-	  }, toast.title), /*#__PURE__*/React__default["default"].createElement("p", {
-	    className: "description"
+	  }, "X"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+	    className: title
+	  }, toast.title), /*#__PURE__*/React.createElement("p", {
+	    className: description
 	  }, toast.description)))));
-	}
+	};
 
 	const showToast = (setList, type, description, interval = 3000) => {
 	  const toastTypeToTitle = {

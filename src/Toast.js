@@ -1,39 +1,45 @@
-// Toast.js
-import React, { useCallback, useEffect } from 'react'
-import './styles.css' // Import the shared styles directly
+import { useCallback, useEffect } from 'react'
 
-export default function Toast({ toastlist, position, setList, interval = 3000 }) {
-	const deleteToast = useCallback((id) => {
-		const toastListItem = toastlist.filter((e) => e.id !== id)
+import './styles.css'
+
+const Toast = ({ toastlist, position, setList }) => {
+
+	const deleteToast = useCallback(id => {
+		const toastListItem = toastlist.filter(e => e.id !== id)
 		setList(toastListItem)
 	}, [toastlist, setList])
 
 	useEffect(() => {
-		const toastInterval = setInterval(() => {
+		const interval = setInterval(() => {
 			if (toastlist.length) {
 				deleteToast(toastlist[0].id)
 			}
-		}, interval)
+		}, 3000)
 
 		return () => {
-			clearInterval(toastInterval)
+			clearInterval(interval)
 		}
-	}, [toastlist, deleteToast, interval])
+	}, [toastlist, deleteToast])
 
 	return (
-		<div className={`${position}`}>
-			{toastlist.map((toast) => (
-				<div
-					key={toast.id}
-					className={`notification toast ${position} ${toast.type}`}
-				>
-					<button onClick={() => deleteToast(toast.id)}>X</button>
-					<div>
-						<p className="title">{toast.title}</p>
-						<p className="description">{toast.description}</p>
+		<div className={`${container} ${[position]}`}>
+			{
+				toastlist.map((toast, i) => (
+					<div
+						key={i}
+						className={`${notification} ${toast} ${[position]}`}
+						style={{ backgroundColor: toast.backgroundColor }}
+					>
+						<button onClick={() => deleteToast(toast.id)}>X</button>
+						<div>
+							<p className={title}>{toast.title}</p>
+							<p className={description}>{toast.description}</p>
+						</div>
 					</div>
-				</div>
-			))}
+				))
+			}
 		</div>
 	)
 }
+
+export default Toast
