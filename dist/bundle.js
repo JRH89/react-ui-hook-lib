@@ -153,19 +153,19 @@
 	    };
 	  }, [toastlist, deleteToast]);
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `${container} ${[position]}`
+	    className: `container ${[position]}`
 	  }, toastlist.map((toast, i) => /*#__PURE__*/React__default["default"].createElement("div", {
 	    key: i,
-	    className: `${notification} ${toast} ${[position]}`,
+	    className: `notification toast ${position} ${toast.type}`,
 	    style: {
 	      backgroundColor: toast.backgroundColor
 	    }
 	  }, /*#__PURE__*/React__default["default"].createElement("button", {
 	    onClick: () => deleteToast(toast.id)
 	  }, "X"), /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("p", {
-	    className: title
+	    className: "title"
 	  }, toast.title), /*#__PURE__*/React__default["default"].createElement("p", {
-	    className: description
+	    className: "description"
 	  }, toast.description)))));
 	};
 

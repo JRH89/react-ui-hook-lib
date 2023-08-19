@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from 'react'
-
 import './styles.css'
 
 const Toast = ({ toastlist, position, setList }) => {
@@ -27,7 +26,7 @@ const Toast = ({ toastlist, position, setList }) => {
 				toastlist.map((toast, i) => (
 					<div
 						key={i}
-						className={`notification toast ${position} ${toast.type}`}
+						className={`notification toast ${[position]} ${toast.type}`}
 						style={{ backgroundColor: toast.backgroundColor }}
 					>
 						<button onClick={() => deleteToast(toast.id)}>X</button>
