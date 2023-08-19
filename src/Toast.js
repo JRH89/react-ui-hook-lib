@@ -22,18 +22,18 @@ const Toast = ({ toastlist, position, setList }) => {
 	}, [toastlist, deleteToast])
 
 	return (
-		<div className={`${container} ${[position]}`}>
+		<div className={`container ${[position]}`}>
 			{
 				toastlist.map((toast, i) => (
 					<div
 						key={i}
-						className={`${notification} ${toast} ${[position]}`}
+						className={`notification toast ${position} ${toast.type}`}
 						style={{ backgroundColor: toast.backgroundColor }}
 					>
 						<button onClick={() => deleteToast(toast.id)}>X</button>
 						<div>
-							<p className={title}>{toast.title}</p>
-							<p className={description}>{toast.description}</p>
+							<p className="title">{toast.title}</p>
+							<p className="description">{toast.description}</p>
 						</div>
 					</div>
 				))
