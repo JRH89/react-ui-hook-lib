@@ -1,4 +1,4 @@
-![image](https://github.com/JRH89/react-ui-hook-lib/assets/68973848/32099558-7366-44f7-90bd-baefc552afa0)<h1>react-ui-hook-lib</h1>
+<h1>react-ui-hook-lib</h1>
 A collection of reusable React UI components and hooks.
 <br><br><a href="https://test-ui-components.vercel.app">Live Demo</a><br>
   
