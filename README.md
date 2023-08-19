@@ -18,6 +18,7 @@ npm install react react-dom
 <li>Progress Bar</li>
 <img width="400px" height="350px" src="images/image.png">
 <li>Toast Notifications</li>
+<img width="600px" height="400px" src="images/image7.png">
 <li>Buttons (Default, Menu, Search, Submit, Delete)</li>
 <img width="500px" height="500px" src="images/image3.png">
 <li>Styled Input</li>
