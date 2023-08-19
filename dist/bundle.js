@@ -153,10 +153,10 @@
 	    };
 	  }, [toastlist, deleteToast]);
 	  return /*#__PURE__*/React__default["default"].createElement("div", {
-	    className: `container ${position}`
+	    className: `container ${[position]}`
 	  }, toastlist.map((toast, i) => /*#__PURE__*/React__default["default"].createElement("div", {
 	    key: i,
-	    className: `notification toast ${toast.type} ${position}`,
+	    className: `notification toast ${toast.type} ${[position]}`,
 	    style: {
 	      backgroundColor: toast.backgroundColor
 	    }
