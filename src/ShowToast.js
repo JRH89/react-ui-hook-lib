@@ -1,3 +1,5 @@
+import React from "react"
+
 export const showToast = (setList, type, description, interval = 3000) => {
 	const toastTypeToTitle = {
 		success: 'Success',
