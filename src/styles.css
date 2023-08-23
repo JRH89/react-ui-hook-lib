@@ -278,12 +278,12 @@
 {
 	font-size: 14px;
 	position: fixed;
-	z-index: 10;
+	z-index: 9999;
 }
 
 .bottom-right
 {
-	bottom: 1em;
+	bottom: 2em;
 	right: .5em;
 	animation: toast-in-right .7s;
 }
@@ -315,7 +315,7 @@
 
 .toast
 {
-	height: 3.125em;
+	height: 6.125em;
 	/* 50px in em */
 	width: 22.8125em;
 	/* 365px in em */
