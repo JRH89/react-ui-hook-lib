@@ -9,7 +9,7 @@ const Toast = ({ toastlist, position, setList }) => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			if (toastlist.length) {
+			if (toastlist && toastlist.length) {
 				deleteToast(toastlist[0].id)
 			}
 		}, 3000)
@@ -21,7 +21,7 @@ const Toast = ({ toastlist, position, setList }) => {
 
 	return (
 		<div className={`container ${[position]}`}>
-			{toastlist.map((toast, i) => (
+			{toastlist && Array.isArray(toastlist) && toastlist.map((toast, i) => (
 				<div
 					key={i}
 					className={`notification toast ${toast.type} ${[position]}`}
